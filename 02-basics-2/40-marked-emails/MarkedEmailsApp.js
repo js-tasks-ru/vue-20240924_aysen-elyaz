@@ -1,3 +1,4 @@
+
 import { computed, defineComponent, ref } from 'vue'
 
 // Значения взяты из https://jsonplaceholder.typicode.com/comments
@@ -30,23 +31,44 @@ export const emails = [
 ]
 
 export default defineComponent({
+
   name: 'MarkedEmailsApp',
 
-  setup() {},
+  setup() {
+
+    let styleFlags = new Array(emails.length).fill(false),
+      query = ref('')
+
+    const calculatedFlags = computed(() => {
+
+      if (!query.value) {
+        for (var i = 0; i < styleFlags.length; i++) {
+          styleFlags[i] = false
+        }
+      }
+      else {
+        for (var i = 0; i < styleFlags.length; i++) {
+          styleFlags[i] = emails[i].indexOf(query.value) !== -1
+        }}
+        return styleFlags
+    })
+
+    return {
+      calculatedFlags,
+      query,
+      emails
+    }
+  },
 
   template: `
     <div>
       <div class="form-group">
-        <input type="search" aria-label="Search" />
+        <input type="search" aria-label="Search" v-model="query"/>
       </div>
-      <ul aria-label="Emails">
-        <li>
-          Eliseo@gardner.biz
-        </li>
-        <li class="marked">
-          Jayne_Kuhic@sydney.com
+      <ul aria-label="Emails" v-for="(email, index) in emails">
+        <li :class="{ 'marked': calculatedFlags[index] }">
+          {{email}}
         </li>
       </ul>
-    </div>
-  `,
+    </div>`,
 })
