@@ -1,75 +1,65 @@
-import { defineComponent } from 'vue'
-// import { getMeetup } from './meetupsService.ts'
+
+import { defineComponent, ref, watch } from 'vue'
+import { getMeetup } from './meetupsService.ts'
 
 export default defineComponent({
+
   name: 'SelectedMeetupApp',
 
-  setup() {},
+  setup() {
+
+    let picked = ref(null),
+        meetupCount = 5,
+        title = ref('')
+
+    watch(picked, async (newPicked) => {
+        title.value = (await getMeetup(newPicked)).title
+    })
+
+    const plus  = () => {
+       picked.value++
+    }
+
+    const minus  = () => {
+      picked.value--
+    }
+
+    picked.value = 1;
+
+    return {
+      picked,
+      meetupCount,
+      title,
+      plus,
+      minus
+    }
+  },
 
   template: `
     <div class="meetup-selector">
       <div class="meetup-selector__control">
-        <button class="button button--secondary" type="button" disabled>Предыдущий</button>
+        <button class="button button--secondary" type="button" :disabled = "picked === 1" @click="minus" >Предыдущий</button>
 
         <div class="radio-group" role="radiogroup">
-          <div class="radio-group__button">
+          <div v-for="index in meetupCount" class="radio-group__button">
             <input
-              id="meetup-id-1"
+              :id="'meetup-id-' + index"
               class="radio-group__input"
               type="radio"
               name="meetupId"
-              value="1"
+              :value="index"
+              v-model="picked"
             />
-            <label for="meetup-id-1" class="radio-group__label">1</label>
-          </div>
-          <div class="radio-group__button">
-            <input
-              id="meetup-id-2"
-              class="radio-group__input"
-              type="radio"
-              name="meetupId"
-              value="2"
-            />
-            <label for="meetup-id-2" class="radio-group__label">2</label>
-          </div>
-          <div class="radio-group__button">
-            <input
-              id="meetup-id-3"
-              class="radio-group__input"
-              type="radio"
-              name="meetupId"
-              value="3"
-            />
-            <label for="meetup-id-3" class="radio-group__label">3</label>
-          </div>
-          <div class="radio-group__button">
-            <input
-              id="meetup-id-4"
-              class="radio-group__input"
-              type="radio"
-              name="meetupId"
-              value="4"
-            />
-            <label for="meetup-id-4" class="radio-group__label">4</label>
-          </div>
-          <div class="radio-group__button">
-            <input
-              id="meetup-id-5"
-              class="radio-group__input"
-              type="radio"
-              name="meetupId"
-              value="5"
-            />
-            <label for="meetup-id-5" class="radio-group__label">5</label>
+            <label :for="'meetup-id-' + index" class="radio-group__label">{{index}}</label>
           </div>
         </div>
 
-        <button class="button button--secondary" type="button">Следующий</button>
+        <button class="button button--secondary" type="button" :disabled = "picked === meetupCount" @click="plus">Следующий</button>
       </div>
 
       <div class="meetup-selector__cover">
         <div class="meetup-cover">
-          <h1 class="meetup-cover__title">Some Meetup Title</h1>
+          <h1 class="meetup-cover__title">{{title}}</h1>
         </div>
       </div>
 
