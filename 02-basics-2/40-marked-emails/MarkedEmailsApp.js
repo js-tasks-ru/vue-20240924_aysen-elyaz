@@ -42,15 +42,12 @@ export default defineComponent({
     const calculatedFlags = computed(() => {
 
       if (!query.value) {
-        for (var i = 0; i < styleFlags.length; i++) {
-          styleFlags[i] = false
-        }
+        return styleFlags.map((x) => false)
       }
       else {
-        for (var i = 0; i < styleFlags.length; i++) {
-          styleFlags[i] = emails[i].indexOf(query.value) !== -1
-        }}
-        return styleFlags
+        return styleFlags.map((x, index) => emails[index].includes(query.value))
+      }
+
     })
 
     return {

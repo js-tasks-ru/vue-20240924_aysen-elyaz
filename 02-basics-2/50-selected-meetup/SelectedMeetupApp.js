@@ -17,11 +17,11 @@ export default defineComponent({
     })
 
     const plus  = () => {
-       if (picked.value < meetupCount) { picked.value++ }
+       picked.value++
     }
 
     const minus  = () => {
-      if (picked.value > 1) { picked.value-- }
+      picked.value--
     }
 
     picked.value = 1;

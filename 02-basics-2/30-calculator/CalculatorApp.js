@@ -6,8 +6,7 @@ export default defineComponent({
 
   setup() {
 
-    let result = ref(0),
-        picked = ref(''),
+    const picked = ref(''),
         first =  ref(0),
         second = ref(0)
 
@@ -15,25 +14,25 @@ export default defineComponent({
 
       switch (picked.value) {
         case "sum":
-          result.value = first.value + second.value;
+          return first.value + second.value;
           break;
         case "subtract":
-          result.value = first.value - second.value;
+          return first.value - second.value;
           break;
         case "multiply":
-          result.value = first.value * second.value;
+          return first.value * second.value;
           break;
         case "divide":
           if (second.value != 0) {
-            result.value = first.value / second.value;
+            return first.value / second.value;
           }
-          break;
+          break
+        default:
+          return 0
       }
-      return result
     })
 
     return {
-      result,
       picked,
       calculatedResult,
       first,
@@ -57,7 +56,7 @@ export default defineComponent({
 
       <div>=</div>
 
-      <output>{{calculatedResult}}</output>
+      <output>{{ calculatedResult }}</output>
     </div>
   `,
 })

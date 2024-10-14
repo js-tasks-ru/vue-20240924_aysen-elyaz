@@ -33,13 +33,13 @@ export default defineComponent({
         @click="minus"
       >➖</button>
 
-      <span class="count" data-testid="count">{{count}}</span>
+      <span class="count" data-testid="count">{{ count }}</span>
 
       <button
         class="button button--secondary"
         type="button"
         aria-label="Increment"
-        :disabled = "count === maxVal"
+        :disabled = "count===maxVal"
         @click="plus"
       >➕</button>
 
