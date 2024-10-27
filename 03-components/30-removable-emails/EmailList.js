@@ -20,7 +20,7 @@ export default defineComponent({
   setup(props, { emit }) {
 
     const removeEmailEventHandler = (index) => {
-      emit('removeEmailEvent', { index })
+      emit('removeEmailEvent', index)
     }
 
     return {

@@ -1,25 +1,36 @@
-import {computed, defineComponent, ref} from 'vue'
+import {computed, defineComponent, toRef, ref, watch} from 'vue'
 import { UiButton } from '@shgk/vue-course-ui'
 import './UiCounter.css'
-import {getEmails} from "../30-removable-emails/MarkedEmailsApp.js";
-import {emails} from "../../02-basics-2/40-marked-emails/MarkedEmailsApp.js";
 
 export default defineComponent({
 
   name: 'UiCounter',
 
-  props: ['min', 'max', 'count'],
+  //props: ['min', 'max', 'count'],
   emits: ['update:count'],
+  props: {
+    min: {
+      type: Number,
+      default: 0
+    },
+    max: {
+      type: Number
+    },
+    count: {
+      type: Number
+    }
+  },
 
   components: {
     UiButton,
   },
 
-  setup(props) {
+  setup(props, ctx) {
 
-    const min = ref(props.min),
-      max = ref(props.max),
-      count = ref(props.count)
+    const min = toRef(props, 'min'),
+      max = toRef(props, 'max'),
+      propCount = toRef(props, 'count'),
+      count = ref(propCount.value)
 
     const plus = () => {
       count.value++
@@ -37,6 +48,13 @@ export default defineComponent({
       return count.value === max.value
     })
 
+    watch(count, (newCount) => {
+      ctx.emit('update:count', newCount)
+    })
+
+    watch(propCount, (newCount) => {
+      count.value = newCount
+    })
 
     return {
       plus,
@@ -44,6 +62,7 @@ export default defineComponent({
       min,
       max,
       count,
+      propCount,
       minusBnd,
       plusBnd
     }
