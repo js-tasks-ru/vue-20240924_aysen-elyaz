@@ -18,7 +18,7 @@ export default defineComponent({
 
     let intervalId = setInterval(() =>
       time.value  = toLocaleTimeString(new Date()), 1000)
-      
+
     onUnmounted(() => clearInterval(intervalId));
 
     return {
