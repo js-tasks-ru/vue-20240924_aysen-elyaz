@@ -33,6 +33,7 @@ import UiStretch from './UiStretch.vue'
     </div>
 
     <div class="row" style="--width: 1400px; --height: 700px">
+
       <UiStretch class="sample">
         <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" controls></video>
       </UiStretch>
@@ -40,7 +41,7 @@ import UiStretch from './UiStretch.vue'
   </div>
 </template>
 
-<style scoped>
+<style>
 .page {
   padding: 1rem;
 }

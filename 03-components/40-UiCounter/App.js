@@ -11,12 +11,16 @@ export default defineComponent({
   },
 
   setup() {
-    const count1 = ref(1)
-    const count2 = ref(2)
+
+    const initCount1 = 1
+    const initCount2 = 2
+
+    const count1 = ref(initCount1)
+    const count2 = ref(initCount2)
 
     function reset() {
-      count1.value = 1
-      count2.value = 2
+      count1.value = initCount1
+      count2.value = initCount2
     }
 
     return {
@@ -30,6 +34,7 @@ export default defineComponent({
     <div>
       <p style="margin: 1em 0">
         <UiCounter v-model:count="count1" />
+
       </p>
       <p style="margin: 1em 0">
         <UiCounter v-model:count="count2" :min="1" :max="3" />

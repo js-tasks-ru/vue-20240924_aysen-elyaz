@@ -1,5 +1,7 @@
-<script>
-import { computed, defineComponent } from 'vue'
+
+<script setup>
+
+import { computed } from 'vue'
 import { UiIcon } from '@shgk/vue-course-ui'
 
 const agendaItemDefaultTitles = {
@@ -24,35 +26,22 @@ const agendaItemIcons = {
   other: 'cal-sm',
 }
 
-export default defineComponent({
-  name: 'MeetupAgendaItem',
-
-  components: {
-    UiIcon,
-  },
-
-  props: {
-    agendaItem: {
-      type: Object,
-      required: true,
-    },
-  },
-
-  setup(props) {
-    const icon = computed(() => agendaItemIcons[props.agendaItem.type])
-    const title = computed(() => agendaItemDefaultTitles[props.agendaItem.type])
-    return {
-      icon,
-      title,
-    }
+const props = defineProps({
+  agendaItem: {
+    type: Object,
+    required: true,
   },
 })
+
+const icon = computed(() => agendaItemIcons[props.agendaItem.type])
+const title = computed(() => agendaItemDefaultTitles[props.agendaItem.type])
+
 </script>
 
 <template>
   <div class="agenda-item">
     <div class="agenda-item__col">
-      <UiIcon :icon="icon" />
+      <UiIcon :icon="icon"/>
     </div>
     <div class="agenda-item__col">{{ agendaItem.startsAt }} - {{ agendaItem.endsAt }}</div>
     <div class="agenda-item__col">
