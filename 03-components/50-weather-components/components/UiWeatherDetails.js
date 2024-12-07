@@ -1,11 +1,14 @@
 
-import {defineComponent, ref} from 'vue'
+import {defineComponent, toRef} from 'vue'
 import UiWeatherDetailsItem from './UiWeatherDetailsItem.js'
 
 export default defineComponent({
 
-  name: 'UiWeatherDetails',
-  props: ['weatherDetails'],
+  props: {
+    weatherDetails: {
+      type: Object
+    }
+  },
 
   components: {
     UiWeatherDetailsItem,
@@ -13,7 +16,7 @@ export default defineComponent({
 
   setup(props) {
 
-    const details = ref(props.weatherDetails)
+    const details = toRef(props,'weatherDetails')
 
     return {
       details

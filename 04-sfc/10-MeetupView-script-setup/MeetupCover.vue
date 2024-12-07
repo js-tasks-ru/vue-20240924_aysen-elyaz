@@ -3,10 +3,6 @@
 
 import { computed } from 'vue'
 
-defineOptions({
-  name: 'MeetupCover',
-})
-
 const props = defineProps({
   title: {
     type: String,

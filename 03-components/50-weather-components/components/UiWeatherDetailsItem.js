@@ -1,15 +1,21 @@
-import {defineComponent, ref} from 'vue'
+import {defineComponent, toRef} from 'vue'
 
 export default defineComponent({
 
-  name: 'UiWeatherDetailsItem',
-  props: ['title', 'quantity'],
+  props: {
+    title: {
+      type: String
+    },
+    quantity: {
+      type: Number
+    }
+  },
 
 
   setup(props) {
 
-    const title = ref(props.title),
-      quantity = ref(props.quantity)
+    const title = toRef(props,'title'),
+      quantity = toRef(props,'quantity')
 
     return {
       title,

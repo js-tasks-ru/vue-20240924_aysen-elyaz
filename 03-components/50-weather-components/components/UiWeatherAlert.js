@@ -1,13 +1,16 @@
-import {defineComponent, ref} from 'vue'
+import {defineComponent, toRef} from 'vue'
 
 export default defineComponent({
 
-  name: 'UiWeatherAlert',
-  props: ['weatherAlert'],
+  props: {
+    weatherAlert: {
+      type: Object
+    }
+  },
 
   setup(props) {
 
-    const alert = ref(props.weatherAlert)
+    const alert = toRef(props, 'weatherAlert')
 
     return {
       alert

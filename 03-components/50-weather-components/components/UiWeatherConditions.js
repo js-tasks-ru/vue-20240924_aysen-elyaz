@@ -1,15 +1,18 @@
 
-import {defineComponent, ref} from 'vue'
+import {defineComponent, toRef} from 'vue'
 import { WeatherConditionIcons } from '../weather.service.ts'
 
 export default defineComponent({
 
-  name: 'UiWeatherConditions',
-  props: ['weatherDetails'],
+  props: {
+    weatherDetails: {
+      type: Object
+    }
+  },
 
     setup(props) {
 
-    const details = ref(props.weatherDetails)
+    const details = toRef(props,'weatherDetails')
 
     return {
       details,

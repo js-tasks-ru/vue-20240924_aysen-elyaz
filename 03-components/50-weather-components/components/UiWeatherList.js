@@ -4,8 +4,6 @@ import UiWeatherCard from './UiWeatherCard.js'
 
 export default defineComponent({
 
-  name: 'UiWeatherList',
-
   components: {
     UiWeatherCard
   },

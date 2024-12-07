@@ -4,10 +4,6 @@
 import { computed } from 'vue'
 import { UiIcon } from '@shgk/vue-course-ui'
 
-defineOptions({
-  name: 'MeetupInfo',
-})
-
 const props = defineProps({
   organizer: {
     type: String,

@@ -7,10 +7,6 @@ import MeetupDescription from './MeetupDescription.vue'
 import MeetupCover from './MeetupCover.vue'
 import MeetupInfo from './MeetupInfo.vue'
 
-defineOptions({
-  name: 'MeetupView',
-})
-
 const props = defineProps({
   meetup: {
     type: Object,

@@ -1,14 +1,20 @@
-import {defineComponent, ref} from 'vue'
+import {defineComponent, toRef} from 'vue'
 
 export default defineComponent({
 
-  name: 'UiWeatherCardHead',
-  props: ['name', 'time'],
+  props: {
+    name: {
+      type: String
+    },
+    time: {
+      type: String
+    }
+  },
 
   setup(props) {
 
-    const name = ref(props.name),
-      time = ref(props.time)
+    const name = toRef(props,'name'),
+      time = toRef(props,'time')
 
     return {
       name,

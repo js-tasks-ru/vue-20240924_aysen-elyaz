@@ -1,10 +1,6 @@
 
 <script setup>
 
-defineOptions({
-  name: 'MeetupDescription',
-})
-
 const props = defineProps({
   description: {
     type: String,

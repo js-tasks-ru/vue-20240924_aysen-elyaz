@@ -26,10 +26,6 @@ const agendaItemIcons = {
   other: 'cal-sm',
 }
 
-defineOptions({
-  name: 'MeetupAgendaItem',
-})
-
 const props = defineProps({
   agendaItem: {
     type: Object,

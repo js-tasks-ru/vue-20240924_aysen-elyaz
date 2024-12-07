@@ -1,5 +1,5 @@
 
-import {defineComponent, ref} from 'vue'
+import {defineComponent, toRef} from 'vue'
 import UiWeatherDetails from './UiWeatherDetails.js'
 import UiWeatherConditions from './UiWeatherConditions.js'
 import UiWeatherCardHead from './UiWeatherCardHead.js'
@@ -7,9 +7,11 @@ import UiWeatherAlert from './UiWeatherAlert.js'
 
 export default defineComponent({
 
-  name: 'UiWeatherCard',
-
-  props: ['cardItem'],
+  props: {
+    cardItem: {
+      type: Object
+    }
+  },
 
   components: {
     UiWeatherDetails,
@@ -20,7 +22,7 @@ export default defineComponent({
 
   setup(props) {
 
-    const item = ref(props.cardItem)
+    const item = toRef(props,'cardItem')
 
     return {
       item

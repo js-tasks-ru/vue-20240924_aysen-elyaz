@@ -15,16 +15,16 @@ export default defineComponent({
     },
   },
 
-  emits: ['removeEmailEvent'],
+  emits: ['removeEmail'],
 
   setup(props, { emit }) {
 
-    const removeEmailEventHandler = (index) => {
-      emit('removeEmailEvent', index)
+    const removeEmailHandler = (index) => {
+      emit('removeEmail', index)
     }
 
     return {
-      removeEmailEventHandler
+      removeEmailHandler
     }
   },
 
@@ -35,7 +35,7 @@ export default defineComponent({
         :key="email"
         :email="email"
         :marked="isMarked"
-        @remove-email-event="removeEmailEventHandler(index)"
+        @remove-email="removeEmailHandler(index)"
       />
     </ul>
   `,

@@ -12,16 +12,15 @@ export default defineComponent({
 
   setup() {
 
-    const initCount1 = ref(1)
-    const initCount2 = ref(2)
+    const initCount1 = 1
+    const initCount2 = 2
 
-    const count1 = ref(initCount1.value)
-    const count2 = ref(initCount2.value)
+    const count1 = ref(initCount1)
+    const count2 = ref(initCount2)
 
     function reset() {
-
-      count1.value = initCount1.value
-      count2.value = initCount2.value
+      count1.value = initCount1
+      count2.value = initCount2
     }
 
     return {

@@ -70,7 +70,7 @@ export default defineComponent({
       <UiFormGroup>
         <UiInput v-model.trim="query" type="search" placeholder="Поиск" aria-label="Поиск" small />
       </UiFormGroup>
-      <EmailList :emails="markedEmails" @remove-email-event="removeEmailByIndex"/>
+      <EmailList :emails="markedEmails" @remove-email="removeEmailByIndex"/>
     </div>
   `,
 })

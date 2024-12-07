@@ -3,10 +3,6 @@
 
 import MeetupAgendaItem from './MeetupAgendaItem.vue'
 
-defineOptions({
-  name: 'MeetupAgenda',
-})
-
 const props = defineProps({
   agenda: {
     type: Array,
